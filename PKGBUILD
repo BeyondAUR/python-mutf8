@@ -7,23 +7,23 @@ pkgver=1.0.6
 pkgrel=3
 pkgdesc='MUTF-8 encoder/decoder'
 arch=('x86_64')
-url="https://github.com/TkTech/$_name"
+url="https://github.com/TkTech/mutf8"
 license=('MIT')
 depends=('python')
 makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
 checkdepends=('python-pytest')
 # tests directory isn't in pypi sdist
-source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
+source=("$pkgname-$pkgver.tar.gz::https://github.com/TkTech/mutf8/releases/tag/v${pkgver}")
 sha256sums=('c7a86f00bc8d313b9ce184375c944bf5be771127283d82a8d2becf33cc84e1c7')
 
 build() {
-  cd "$_name-$pkgver"
+  cd "${srcdir}/${_name}-${pkgver}"
 
   python -m build --wheel --no-isolation
 }
 
 check() {
-  cd "$_name-$pkgver"
+  cd "${srcdir}/${_name}-${pkgver}"
 
   # https://wiki.archlinux.org/title/Python_package_guidelines#Check
   local _python_version="$(python -c 'import sys; print("".join(map(str, sys.version_info[:2])))')"
@@ -31,7 +31,7 @@ check() {
 }
 
 package() {
-  cd "$_name-$pkgver"
+  cd "${srcdir}/${_name}-${pkgver}"
 
   python -m installer --destdir="$pkgdir/" dist/*.whl
 
