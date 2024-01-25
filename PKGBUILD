@@ -13,7 +13,7 @@ depends=('python')
 makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
 checkdepends=('python-pytest')
 # tests directory isn't in pypi sdist
-source=("$pkgname-$pkgver.tar.gz::https://github.com/TkTech/mutf8/releases/tag/v${pkgver}")
+source=("$pkgname-$pkgver.tar.gz::https://github.com/TkTech/mutf8/archive/refs/tags/v${pkgver}.tar.gz")
 sha256sums=('fe3a15bd76f26abf96036233a1a10974a977055db5dd14e6e5cd8ba76157307f')
 
 build() {
